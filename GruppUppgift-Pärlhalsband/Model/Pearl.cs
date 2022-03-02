@@ -54,11 +54,7 @@ namespace GruppUppgift_Pärlhalsband.Model
             return $"\nPrice:{this.Price}\nSize:{this.Size}mm\nColor:{this.Color}\nShape:{this.Shape}\nOrigins:{this.Origin}\n";
         }
         public override int GetHashCode() => (this.Size, this.Origin, this.Color, this.Shape).GetHashCode();
-        public override bool Equals(object? obj)
-        {
-            return base.Equals(obj);
-        }
-
+        public override bool Equals(object? obj) => Equals(obj as IPearl);
         #endregion
 
         #region Constructers
