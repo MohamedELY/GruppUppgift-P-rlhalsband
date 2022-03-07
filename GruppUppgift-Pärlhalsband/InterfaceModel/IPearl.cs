@@ -11,10 +11,10 @@ namespace GruppUppgift_Pärlhalsband.InterfaceModel
     public enum Origins { SaltWater, SweetWater }
     internal interface IPearl : IEquatable<IPearl>, IComparable<IPearl>
     {
-        decimal Price { get; set; }
-        int Size { get; set; }
-        Colors Color { get; set; }
-        Shapes Shape { get; set; }
-        Origins Origin { get; set; }
+        decimal Price { get; }
+        int Size { get; }
+        Colors Color { get; }
+        Shapes Shape { get; }
+        Origins Origin { get; }
     }
 }

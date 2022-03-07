@@ -1,49 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GruppUppgift_Pärlhalsband.InterfaceModel;
+﻿using GruppUppgift_Pärlhalsband.InterfaceModel;
 
 namespace GruppUppgift_Pärlhalsband.Model
 {
     internal class Pearl : IPearl
     {
         #region Class Fields and propertis
-        public decimal Price { get 
+        public decimal Price
+        {
+            get
             {
-                if(this.Origin == Origins.SweetWater)
+                if (this.Origin == Origins.SweetWater)
                 {
                     return this.Size * 50;
                 }
                 else
                     return (this.Size * 50) * 2;
-                
-            }  }
+
+            }
+        }
         private int _size;
-        public int Size { get => _size; set
+        public int Size
+        {
+            get => _size; private set
             {
-                if(value < 5)
+                if (value < 5)
                 {
                     _size = 5;
                 }
-                else if(value > 25)
+                else if (value > 25)
                 {
                     _size = 25;
                 }
                 else { _size = value; }
-            } }
-        public Colors Color { get ; set ; }
-        public Shapes Shape { get ; set; }
-        public Origins Origin { get; set; }
+            }
+        }
+        public Colors Color { get; private set; }
+        public Shapes Shape { get; private set; }
+        public Origins Origin { get; private set; }
         #endregion
 
         #region Implementetion off IEquatable, IComparable, GetHashCode and ToString
         public int CompareTo(IPearl other)
         {
-            if(this.Size != other.Size)
+            if (this.Size != other.Size)
                 return this.Size.CompareTo(other.Size);
-            else if(this.Color != other.Color)
+            else if (this.Color != other.Color)
                 return this.Color.CompareTo(other.Color);
             else
                 return this.Shape.CompareTo(other.Shape);
@@ -57,7 +58,11 @@ namespace GruppUppgift_Pärlhalsband.Model
         public override bool Equals(object? obj) => Equals(obj as IPearl);
         #endregion
 
-        #region Constructers
+        #region Methods aand Constructers
+        public Pearl SetColor(Colors color) => new Pearl(this) { Color = color };
+        public Pearl SetShape(Shapes shape) => new Pearl(this) { Shape = shape };
+        public Pearl SetOrigins(Origins origin) => new Pearl(this) { Origin = origin };
+        public Pearl SetSize(int size) => new Pearl(this) { Size = size };
         public Pearl(int size, Colors color, Shapes shape, Origins origin)
         {
             Size = size;
@@ -72,6 +77,13 @@ namespace GruppUppgift_Pärlhalsband.Model
             Color = (Colors)rng.Next((int)Colors.Black, (int)Colors.Pink);
             Shape = (Shapes)rng.Next((int)Shapes.Round, (int)Shapes.Dropp);
             Origin = (Origins)rng.Next((int)Origins.SaltWater, (int)Origins.SweetWater);
+        }
+        public Pearl(Pearl aPearl)
+        {
+            this.Color = aPearl.Color;
+            this.Shape = aPearl.Shape;
+            this.Origin = aPearl.Origin;
+            this.Size = aPearl.Size;
         }
         #endregion
     }
