@@ -26,7 +26,7 @@ namespace GruppUppgift_Pärlhalsband.Model
                 return price;
             }
         }
-        #endregion
+        #endregion    
 
         #region Methods
         public void Sort()
@@ -37,6 +37,8 @@ namespace GruppUppgift_Pärlhalsband.Model
         {
             return _stringOfPearls.IndexOf(pearl);
         }
+        public int Count() => _stringOfPearls.Count;
+
         #endregion
 
         #region Override of methods
